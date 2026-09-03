@@ -1,72 +1,56 @@
 """
-EXERCISE 3: RPG Hero Evolution
-------------------------------
+EXERCISE 4: Amphibious Explorer Drone
+------------------------------------
 Requirements:
-1. Create a base class 'Hero':
-   - __init__ takes 'name' and 'hp'.
-   - Method 'attack(self)' prints: "[name] strikes for standard physical damage!"
-2. Create a child class 'Mage' that inherits from Hero:
-   - __init__ takes (name, hp, mana). Inherit them properly and then set self.mana.
-   - Override 'attack(self)' to REPLACE the parent behavior and print:
-     "[name] consumes [mana] mana and casts a massive Fireball!"
-3. Create a child class 'Paladin' that inherits from Hero:
-   - __init__ takes (name, hp) andInherit them properly.
-   - Override 'attack(self)' to EXTEND the parent behavior with existing method function.
-     and print also: "[name] heals for 5 HP in a radiant burst of holy light!"
-4. Create one Hero, one Mage, and one Paladin, and call attack() on all three.
+1. Create class 'LandRover' with a method 'drive(self)' printing a driving message.
+2. Create class 'Boat' with a method 'sail(self)' printing a sailing message.
+3. Create child class 'AmphibiousRover' that inherits from BOTH LandRover and Boat:
+   - Add a custom method 'transform(self)' printing a transformation message.
+   - Add a method 'navigate(self, destination, speed=None)':
+     * If speed is provided, print: "Navigating to [destination] at [speed] km/h."
+     * If speed is None, print: "Navigating to [destination] at default eco-cruising speed."
+4. Instantiate AmphibiousRover and demonstrate calling drive(), sail(), transform(),
+   and navigate() with both 1 argument and 2 arguments.
 """
 
 
 
 
 
+class Landrover:
 
-class Hero:
-
-    def __init__(self, name, hp):
-        self.name = name
-        self.hp = hp
-
-    def attack(self):
-        print(f"{self.name} strike physically")
+    def drive(self):
+        print("Driving Landrover")
 
 
+class Boat:
 
-class Mage(Hero):
+    def sail(self):
+        print("Sailing  Boat")
 
-    def __init__(self, name, hp, mana):
-        super().__init__(name, hp)
-        self.mana = mana
+class AmphibiousRover( Landrover , Boat ):
 
-    def attack(self):
-        print(f"{self.name} strike Magically!!!")
+    def transform(self):
+        print("Transforming")
 
-
-
-class Paladin(Hero):
-
-    def __init__(self, name, hp):
-        super().__init__(name, hp)
-
-
-    def attack(self):
-        super().attack()
-        print(f"{self.name} heals 5HP")
+    def navigate(self, destination, speed=None):
+        if speed is not None:
+            print(f"Navigating {destination} with speed {speed}")
+        elif speed is None:
+            print("No speed")
 
 
 
 
 
-# Testing ----------
-hero1 = Hero("Aragon", 100)
-hero1.attack()
+#Testing ----------
 
-print("------------------")
+landrover1 = Landrover()
+landrover1.drive()
 
-mage1 = Mage("Gandalf", 500, 30)
-mage1.attack()
+boat1 = Boat()
+boat1.sail()
 
-print("------------------")
-
-paladin1 = Paladin("Frodo", 40)
-paladin1.attack()
+both1 = AmphibiousRover()
+both1.navigate("Finland", 100)
+both1.navigate("Finland")
